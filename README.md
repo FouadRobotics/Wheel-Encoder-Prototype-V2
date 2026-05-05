@@ -123,7 +123,7 @@ Start with `DELAY_LEN = 3`. In the Serial Plotter, look at the two channel trace
 
 ## Experiment — Consistent 24 Counts Per Revolution
 
-Despite the software phase alignment, achieving a textbook 90° quadrature offset between the two channels proved difficult to dial in with this physical geometry (as visible in the Serial Plotter screenshot below).
+Despite the software phase alignment, achieving a textbook 90° quadrature offset between the two channels proved difficult to dial in (as visible in the Serial Plotter screenshot below) due to the imperfect placement of magnets.
 
 ![AB signal alignment attempt](Quad_wave_attempt.png)
 
