@@ -11,9 +11,9 @@ An improved version of the magnetic wheel encoder described in [Part 1](https://
 The sensor holder was redesigned with a taller profile to position the SS49E sensors closer to the center of the passing magnets (vertically). In V1 the sensors sat lower, catching only the fringe of the magnetic field. The raised height delivers a stronger and more symmetrical analog deflection as each magnet passes — cleaner raw signals that require less hysteresis headroom to decode reliably.
 
 <img width="4032" height="3024" alt="IMG_1953" src="https://github.com/user-attachments/assets/53b5f6ad-7f57-4e05-91f9-63a730c40eb9" />
-
+-
 <img width="3024" height="4032" alt="IMG_1956" src="https://github.com/user-attachments/assets/494ad0d3-275a-4306-b38b-086ad9e1b17a" />
-
+-
 <img width="3024" height="4032" alt="IMG_1954" src="https://github.com/user-attachments/assets/30e28d9b-cb46-4c14-bf66-386d1daf04ed" />
 
 
