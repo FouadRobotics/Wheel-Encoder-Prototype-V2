@@ -10,6 +10,12 @@ An improved version of the magnetic wheel encoder described in [Part 1](https://
 
 The sensor holder was redesigned with a taller profile to position the SS49E sensors closer to the center of the passing magnets (vertically). In V1 the sensors sat lower, catching only the fringe of the magnetic field. The raised height delivers a stronger and more symmetrical analog deflection as each magnet passes — cleaner raw signals that require less hysteresis headroom to decode reliably.
 
+![Raised sensor mount — front view](IMG_1953.jpeg)
+
+![Raised sensor mount — angle view](IMG_1954.jpeg)
+
+![Raised sensor mount — side/bottom view](IMG_1956.jpeg)
+
 ### 2. Per-Channel Calibrated Offsets
 
 V1 used a single shared threshold. V2 measures and stores a separate resting baseline for each sensor independently:
