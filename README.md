@@ -95,7 +95,7 @@ All three values stream at 115200 baud, making it straightforward to visualize b
 
 **[Wheel-Enc-Proto/Wheel-Enc-Proto.ino](Wheel-Enc-Proto/Wheel-Enc-Proto.ino)**
 
-No external libraries required. Flash directly to an Arduino Uno (or any ATmega328-based board).
+No external libraries required. Flash directly to an Arduino Uno.
 
 ### Calibration
 
