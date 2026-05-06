@@ -12,11 +12,12 @@ The SS49E sensor legs were bent upward to elevate the sensing face, positioning 
 
 The raised height delivers a stronger and more symmetrical analog deflection as each magnet passes — cleaner raw signals that require less hysteresis headroom to decode reliably.
 
-![Raised sensor mount — front view](IMG_1953.jpeg)
-
-![Raised sensor mount — angle view](IMG_1954.jpeg)
-
-![Raised sensor mount — side/bottom view](IMG_1956.jpeg)
+<img width="4032" height="3024" alt="IMG_1953" src="https://github.com/user-attachments/assets/5b74f53c-43d2-43f8-b3af-16051320657f" />
+-
+<img width="3024" height="4032" alt="IMG_1954" src="https://github.com/user-attachments/assets/c3071f6f-995f-443d-b7f3-9fcce58e9c6f" />
+-
+<img width="3024" height="4032" alt="IMG_1956" src="https://github.com/user-attachments/assets/06cd9cab-fc0d-4916-ac3e-dc79136d08c9" />
+-
 
 ### 2. Per-Channel Hysteresis Thresholds
 
