@@ -133,8 +133,7 @@ With three complementary sources, a modest 24-count-per-rev wheel encoder is suf
 
 ## Video Demo
 
-[demo_video.MOV](demo_video.MOV)
-
+https://youtu.be/zW9HWRnuJOY
 ---
 
 ## Related
