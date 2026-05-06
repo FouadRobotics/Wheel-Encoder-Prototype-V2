@@ -8,7 +8,9 @@ An improved version of the magnetic wheel encoder described in [Part 1](https://
 
 ### 1. Raised Sensor Mount Height
 
-The sensor holder was redesigned with a taller profile to position the SS49E sensors closer to the center of the passing magnets (vertically). In V1 the sensors sat lower, catching only the fringe of the magnetic field. The raised height delivers a stronger and more symmetrical analog deflection as each magnet passes — cleaner raw signals that require less hysteresis headroom to decode reliably.
+The SS49E sensor legs were bent upward to elevate the sensing face, positioning it closer to the center of the passing magnets rather than catching only the fringe of the field. To make this permanent, the 3D-printed holder was epoxy-glued to the car chassis structure, and the female jumper wires connecting to the sensors were also fixed in place with epoxy — eliminating any movement that could shift the sensor position during operation.
+
+The raised height delivers a stronger and more symmetrical analog deflection as each magnet passes — cleaner raw signals that require less hysteresis headroom to decode reliably.
 
 ![Raised sensor mount — front view](IMG_1953.jpeg)
 
@@ -16,20 +18,9 @@ The sensor holder was redesigned with a taller profile to position the SS49E sen
 
 ![Raised sensor mount — side/bottom view](IMG_1956.jpeg)
 
-### 2. Per-Channel Calibrated Offsets
+### 2. Per-Channel Hysteresis Thresholds
 
-V1 used a single shared threshold. V2 measures and stores a separate resting baseline for each sensor independently:
-
-```cpp
-const int offset1 = 507;
-const int offset2 = 499;
-```
-
-Each channel is zero-centered against its own measured idle value before any threshold comparison, removing the small unit-to-unit variation in SS49E midpoint voltage.
-
-### 3. Tighter Hysteresis Thresholds
-
-With the improved signal strength from the raised mount, the dead-band window could be narrowed from ±50 counts (V1) to ±25 counts per channel:
+V1 used a single shared pair of high/low thresholds applied identically to both sensors. V2 defines independent threshold pairs for each channel:
 
 ```cpp
 const int HIGH_TH_1 = 25;
@@ -39,9 +30,9 @@ const int HIGH_TH_2 = 25;
 const int LOW_TH_2  = -25;
 ```
 
-A tighter window means the state transitions track the actual magnet edge more precisely, which matters for direction decoding accuracy.
+This makes it possible to tune each sensor independently if one produces a weaker signal or sits at a slightly different distance from the magnets — without affecting the other channel. In V1, a single global threshold forced a compromise between the two sensors. With separate thresholds, each channel can be dialled in to the tightest window its signal strength allows, which improves edge-tracking precision and reduces the chance of missed or false transitions.
 
-### 4. Software Phase Alignment via Delay Buffer
+### 3. Software Phase Alignment via Delay Buffer
 
 Getting two physical sensors to produce a clean 90° quadrature offset is geometry-dependent and difficult to tune by repositioning hardware alone. V2 introduces a software delay buffer that holds channel 2's state for a configurable number of samples before it enters the decoder:
 
@@ -55,7 +46,7 @@ int alignedState2 = delayBuffer[delayIdx];
 
 This shifts channel 2 backward in time by `DELAY_LEN × SAMPLE_PERIOD_US` microseconds — a pure software adjustment that replaces the need to physically reposition the sensor.
 
-### 5. Full Quadrature Decoder with State Machine
+### 4. Full Quadrature Decoder with State Machine
 
 V1 only reported raw channel states. V2 adds a complete 4-bit state machine that decodes direction and maintains a running encoder count:
 
@@ -79,7 +70,7 @@ switch (transition) {
 
 The valid transitions follow a Gray-code pattern. Any two-bit jump (e.g., `00 → 11`) indicates a missed pulse and is discarded rather than corrupting the count.
 
-### 6. Non-Blocking 2 kHz Sampling
+### 5. Non-Blocking 2 kHz Sampling
 
 V1 used `delay()`. V2 uses a `micros()`-based timer to sample both channels at a fixed 2 kHz rate without blocking the main loop:
 
@@ -90,7 +81,7 @@ if (micros() - lastMicros < SAMPLE_PERIOD_US) return;
 lastMicros = micros();
 ```
 
-### 7. Serial Output Now Includes Encoder Count
+### 6. Serial Output Now Includes Encoder Count
 
 ```
 state1, alignedState2, encoderCount
